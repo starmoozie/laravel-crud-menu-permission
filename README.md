@@ -17,6 +17,11 @@
 ## Install
 - `composer install`
 - `php artisan starmoozie:install`
+- `php artisan migrate --seed`
+
+## Default User
+- Email `starmoozie@gmail.com`
+- Password `password`
 
 ## Dependecies
 - https://github.com/starmoozie/laravel-crud
