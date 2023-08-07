@@ -9,10 +9,10 @@ class RouteSeeder extends Seeder
 {
     protected $data = [
         [
-            // 'name'         => 'route', // Name of route menu
-            // 'method'       => 'crud', // crud, get, post, put, patch, delete
-            // 'controller'   => 'NameCrudController', // Name of controller
-            // 'type'         => 'dashboard' // dashboard, api, dahsboard_api, web
+            'name'         => 'filter/role', // Name of route menu
+            'method'       => 'get', // crud, get, post, put, patch, delete
+            'controller'   => 'Api\RouteApiController@filter', // Name of controller
+            'type'         => 'dashboard_api' // dashboard, api, dahsboard_api, web
         ]
     ];
 

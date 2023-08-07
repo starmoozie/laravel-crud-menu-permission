@@ -38,11 +38,4 @@ Route::group([
             Route::{$route->method}($route->route, $route->controller);
         }
     }
-
-    Route::group([
-        'prefix'    => 'filter',
-        'namespace' => 'Api'
-    ], function() {
-        Route::get('role', 'RoleApiController@filter');
-    });
 }); // this should be the absolute last line of this file
