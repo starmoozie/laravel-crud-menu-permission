@@ -39,8 +39,6 @@ Route::group([
         }
     }
 
-    Route::crud('group', 'GroupCrudController');
-
     Route::group([
         'prefix'    => 'filter',
         'namespace' => 'Api'
