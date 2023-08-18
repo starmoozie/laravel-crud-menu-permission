@@ -52,6 +52,7 @@
           class="bg-white table table-hover nowrap rounded shadow-sm border-xs mt-2"
           data-has-details-row="{{ $crud->getOperationSetting('detailsRow') ?? 0 }}"
           data-has-bulk-actions="{{ $crud->getOperationSetting('bulkActions') ?? 0 }}"
+          data-has-line-buttons-as-dropdown="{{ (int) $crud->getOperationSetting('lineButtonsAsDropdown') }}"
           cellspacing="0">
             <thead>
               <tr>
@@ -119,6 +120,7 @@
                   <th data-orderable="false"
                       data-priority="{{ $crud->getActionsColumnPriority() }}"
                       data-visible-in-export="false"
+                      data-action-column="true"
                       >{{ trans('starmoozie::crud.actions') }}</th>
                 @endif
               </tr>
