@@ -52,4 +52,7 @@ return [
     // thus clearing any searching, filtering or pagination that has been
     // remembered and persisted using persistentTable
     'resetButton' => false,
+
+    // Nest action buttons within a dropdown in actions column
+    'lineButtonsAsDropdown' => true,
 ];
