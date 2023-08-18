@@ -379,6 +379,11 @@
             crud.functionsToRunOnDataTablesDrawEvent.forEach(function(functionName) {
                 crud.executeFunctionByName(functionName);
             });
+
+            // change line button to dropdown
+            if ($('#crudTable').data('has-line-buttons-as-dropdown')) {
+                formatActionColumnAsDropdown();
+            }
         } ).dataTable();
 
         // when datatables-colvis (column visibility) is toggled
@@ -409,13 +414,34 @@
             }, 250);
             }
             $(window).on('resize', function(e) {
-            resizeCrudTableColumnWidths();
+                resizeCrudTableColumnWidths();
             });
             $('.sidebar-toggler').click(function() {
-            resizeCrudTableColumnWidths();
+                resizeCrudTableColumnWidths();
             });
         @endif
     });
+
+    const formatActionColumnAsDropdown = () => {
+        // Get action column
+        const actionColumnIndex = $('#crudTable').find('th[data-action-column=true]').index();
+        if (actionColumnIndex !== -1) {
+            $('#crudTable tr').each(function (i, tr) {
+                const actionCell = $(tr).find('td').eq(actionColumnIndex);
+                // Please add "line" class to all line button component
+                const actionButtons = $(actionCell).find('a.btn.line');
+                // Wrap the cell with the component needed for the dropdown
+                actionCell.wrapInner('<div class="nav-item dropdown"></div>');
+                actionCell.wrapInner('<div class="dropdown-menu dropdown-menu-left"></div>');
+                // Prepare buttons as dropdown items
+                actionButtons.map((index, action) => {
+                    $(action).addClass('dropdown-item').removeClass('btn btn-sm btn-link shadow-sm');
+                    $(action).find('i').addClass('me-2 text-primary');
+                });
+                actionCell.prepend('<a class="btn btn-sm px-2 py-1 btn-outline-primary dropdown-toggle actions-buttons-column" href="#" data-toggle="dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">{{ trans('starmoozie::crud.actions') }}</a>');
+            });
+        }
+    }
 </script>
 
 @include('crud::inc.details_row_logic')
